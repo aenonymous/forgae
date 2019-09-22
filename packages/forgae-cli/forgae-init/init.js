@@ -62,7 +62,7 @@ const updateForgaeProjectLibraries = async (_sdkVersion) => {
     setupDocker();
     await installForgae()
     await installAeppSDK(_sdkVersion)
-    await installYarn()
+    await installNpm()
 
     print('===== ForgAE was successfully updated! =====');
 }
@@ -72,7 +72,7 @@ const installLibraries = async () => {
     copyFileOrDir(fileSource, "./package.json")
     await installAeppSDK(sdkVersion)
     await installForgae()
-    await installYarn()
+    await installNpm()
 }
 
 const installAeppSDK = async (_sdkVersion = '') => {
@@ -85,9 +85,9 @@ const installForgae = async () => {
     await execute(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', 'install', [`forgae-lib`, '--save-exact', '--ignore-scripts', '--no-bin-links']);
 }
 
-const installYarn = async () => {
-    print(`===== Installing yarn locally =====`);
-    await execute(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', 'install', ['yarn', '--save-exact', '--ignore-scripts', '--no-bin-links']);
+const installNpm = async () => {
+    print(`===== Installing npm locally =====`);
+    await execute(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', 'install', ['npm', '--save-exact', '--ignore-scripts', '--no-bin-links']);
 }
 
 const setupContracts = (shape) => {

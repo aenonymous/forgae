@@ -1,14 +1,14 @@
 # Quick Start
 
 ## Requirements
-In order to have aeproject working you must have installed the following:
+In order to have forgae working you must have installed the following:
 ```
 nodejs 
 python 
 docker 
 ```
 
-Note: For older versions on widnows you can use docker-toolbox
+Note: For older versions on windows you can use docker-toolbox
 ## Install
 
 ```text

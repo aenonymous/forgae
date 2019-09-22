@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "test": "mocha ./test/**/*.js --timeout 0 --exit",
-    "link": "lerna bootstrap && cd packages/forgae-cli && yarn link",
-    "develop": "lerna bootstrap && cd packages/forgae-cli && yarn link && cd .. && cd forgae-config && npm install && yarn link && cd .. && cd forgae-logger && npm install && yarn link && cd .. && cd forgae-utils && npm install && yarn link && cd .. && cd forgae-lib && npm install && yarn link && yarn link forgae-config && yarn link forgae-logger && yarn link forgae-utils",
-    "unlink": "cd packages/forgae-cli && yarn unlink && cd .. && cd forgae-lib && yarn unlink && yarn unlink forgae-config && yarn unlink forgae-utils && yarn unlink forgae-logger && cd .. && cd forgae-config && yarn unlink && cd .. && cd forgae-logger && yarn unlink && cd .. && cd forgae-utils && yarn unlink"
+    "link": "lerna bootstrap && cd packages/forgae-cli && npm link",
+    "develop": "lerna bootstrap && cd packages/forgae-cli && npm link && cd .. && cd forgae-config && npm install && npm link && cd .. && cd forgae-logger && npm install && npm link && cd .. && cd forgae-utils && npm install && npm link && cd .. && cd forgae-lib && npm install && npm link && npm link forgae-config && npm link forgae-logger && npm link forgae-utils",
+    "unlink": "cd packages/forgae-cli && npm unlink && cd .. && cd forgae-lib && npm unlink && npm unlink forgae-config && npm unlink forgae-utils && npm unlink forgae-logger && cd .. && cd forgae-config && npm unlink && cd .. && cd forgae-logger && npm unlink && cd .. && cd forgae-utils && npm unlink"
   },
   "dependencies": {
     "esm": "^3.0.77",
@@ -29,7 +29,6 @@
     "promisify-child-process": "^2.1.2",
     "shelljs": "^0.8.2",
     "sinon": "^7.1.1",
-    "typescript": "^3.5.2",
-    "yarn": "^1.13.0"
+    "typescript": "^3.5.2"
   }
 }
