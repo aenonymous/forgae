@@ -1,14 +1,14 @@
 const chai = require('chai');
 let chaiAsPromised = require("chai-as-promised");
-const execute = require('../../packages/aeproject-utils/utils/aeproject-utils.js').aeprojectExecute;
-const exec = require('../../packages/aeproject-utils/utils/aeproject-utils.js').execute;
-const winExec = require('../../packages/aeproject-utils/utils/aeproject-utils.js').winExec;
-const waitForContainer = require('../../packages/aeproject-utils/utils/aeproject-utils.js').waitForContainer;
+const execute = require('../../packages/forgae-utils/utils/forgae-utils.js').forgaeExecute;
+const exec = require('../../packages/forgae-utils/utils/forgae-utils.js').execute;
+const winExec = require('../../packages/forgae-utils/utils/forgae-utils.js').winExec;
+const waitForContainer = require('../../packages/forgae-utils/utils/forgae-utils.js').waitForContainer;
 const waitUntilFundedBlocks = require('../utils').waitUntilFundedBlocks;
 const constants = require('../constants.json')
 const fs = require('fs-extra');
-const nodeConfig = require('../../packages/aeproject-config/config/node-config.json');
-const utils = require('../../packages/aeproject-utils/utils/aeproject-utils')
+const nodeConfig = require('../../packages/forgae-config/config/node-config.json');
+const utils = require('../../packages/forgae-utils/utils/forgae-utils')
 let executeOptions = {
     cwd: process.cwd() + constants.nodeTestsFolderPath
 };
@@ -32,9 +32,9 @@ const waitForContainerOpts = {
     options: executeOptions
 }
 
-describe("AEproject Node and Compiler Tests", () => {
+describe("Forgae Node and Compiler Tests", () => {
 
-    describe('AEproject Node', () => {
+    describe('ForgAE Node', () => {
 
         before(async () => {
             fs.ensureDirSync(`.${ constants.nodeTestsFolderPath }`)
@@ -99,7 +99,7 @@ describe("AEproject Node and Compiler Tests", () => {
         })
     })
 
-    describe('AEproject Node - check if compiler is running too', () => {
+    describe('ForgAE Node - check if compiler is running too', () => {
 
         before(async () => {
             fs.ensureDirSync(`.${ constants.nodeTestsFolderPath }`)
@@ -125,7 +125,7 @@ describe("AEproject Node and Compiler Tests", () => {
         })
     })
 
-    describe('AEproject Node', async () => {
+    describe('ForgAE Node', async () => {
         it('Process should stop when command is started in wrong folder.', async () => {
             let result = await execute(constants.cliCommands.NODE, [constants.cliCommandsOptions.START], {
                 cwd: process.cwd()
@@ -137,7 +137,7 @@ describe("AEproject Node and Compiler Tests", () => {
         })
     })
 
-    describe('AEproject Node --only', () => {
+    describe('ForgAE Node --only', () => {
 
         beforeEach(async () => {
             fs.ensureDirSync(`.${ constants.nodeTestsFolderPath }`)
@@ -162,7 +162,7 @@ describe("AEproject Node and Compiler Tests", () => {
         })
     })
 
-    describe("AEproject Node -- allocated port's tests", () => {
+    describe("ForgAE Node -- allocated port's tests", () => {
 
         before(async () => {
             fs.ensureDirSync(`.${ constants.nodeTestsFolderPath }`)
@@ -271,10 +271,10 @@ describe("AEproject Node and Compiler Tests", () => {
     })
 
     if (isWindowsPlatform) {
-        describe("AEproject Node --windows", async () => {
+        describe("ForgAE Node --windows", async () => {
 
             const dockerServiceNodeName = nodeConfig.nodeConfiguration.dockerServiceNodeName;
-            const cliCommand = 'aeproject';
+            const cliCommand = 'forgae';
 
             network = JSON.parse(JSON.stringify(network).replace(/localhost/g, nodeConfig.nodeConfiguration.dockerMachineIP));
 

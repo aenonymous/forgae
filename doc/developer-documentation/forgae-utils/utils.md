@@ -1,14 +1,14 @@
-# aeproject-utils
+# forgae-utils
 
 ## Install
 
 ```text
-npm install aeproject-utils
+npm install forgae-utils
 ```
 
 ## Usage
 
-`aeproject-utils` is a package giving helper functions mainly for working with files and AEternity contracts.
+`forgae-utils` is a package giving helper functions mainly for working with files and AEternity contracts.
 
 ### Available utils
 
@@ -28,8 +28,8 @@ const compiledContract = await client.contractCompile(contractSource, {
 Example
 
 ```javascript
-const execute = require('aeproject-utils').execute;
-await execute('npm', 'install', [`aeproject-lib@${aeprojectLibVersion}`, '--save-exact', '--ignore-scripts', '--no-bin-links']);
+const execute = require('forgae-utils').execute;
+await execute('npm', 'install', [`forgae-lib@${forgaeLibVersion}`, '--save-exact', '--ignore-scripts', '--no-bin-links']);
 ```
 
 * `utils.keyToHex(publicKey)`

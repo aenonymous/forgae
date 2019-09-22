@@ -3,8 +3,8 @@ let chaiAsPromised = require("chai-as-promised");
 chai.use(chaiAsPromised);
 const fs = require('fs-extra')
 const assert = chai.assert;
-const execute = require('../../packages/aeproject-utils/utils/aeproject-utils.js').aeprojectExecute;
-const test = require('../../packages/aeproject-cli/aeproject-test/test')
+const execute = require('../../packages/forgae-utils/utils/forgae-utils.js').forgaeExecute;
+const test = require('../../packages/forgae-cli/forgae-test/test')
 const sinon = require('sinon')
 const constants = require('./../constants.json')
 const countPhraseRepeats = require('./../utils').countPhraseRepeats;
@@ -17,9 +17,9 @@ let executeOptions = {
     cwd: process.cwd() + constants.testTestsFolderPath
 };
 
-describe('AEproject Test', () => {
+describe('Forgae Test', () => {
 
-    describe('AEproject Test - js tests', () => {
+    describe('Forgae Test - js tests', () => {
 
         before(async function () {
             fs.ensureDirSync(`.${ constants.testTestsFolderPath }`)
@@ -38,14 +38,14 @@ describe('AEproject Test', () => {
         // TODO: Sinon test should be reworked with the new node version 
         xit('should execute test cli command with specific path', async function () {
 
-            let aeprojectTestSpy = sinon.spy(test, "run")
-            var version = await shell.exec(`aeproject test --path ${ executeOptions }/exampleTests.js`, {
+            let forgaeTestSpy = sinon.spy(test, "run")
+            var version = await shell.exec(`forgae test --path ${ executeOptions }/exampleTests.js`, {
                 silent: false,
                 async: true
             });
 
-            sinon.assert.calledOnce(aeprojectTestSpy);
-            aeprojectTestSpy.restore();
+            sinon.assert.calledOnce(forgaeTestSpy);
+            forgaeTestSpy.restore();
         });
 
         xit('should execute test cli command without specific js file', async function () {
@@ -61,7 +61,7 @@ describe('AEproject Test', () => {
         })
     })
 
-    describe('AEproject Test - sophia tests', () => {
+    describe('ForgAE Test - sophia tests', () => {
 
         before(async function () {
             fs.ensureDirSync(`.${ constants.testTestsFolderPath }`);

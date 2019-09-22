@@ -3,12 +3,12 @@ const chai = require('chai');
 let chaiAsPromised = require("chai-as-promised");
 chai.use(chaiAsPromised);
 const assert = chai.assert;
-const utils = require('../../packages/aeproject-utils/utils/aeproject-utils.js');
-const execute = utils.aeprojectExecute;
+const utils = require('../../packages/forgae-utils/utils/forgae-utils.js');
+const execute = utils.forgaeExecute;
 const waitForContainer = utils.waitForContainer;
 const constants = require('../constants.json');
 const fs = require('fs-extra');
-const nodeConfig = require('../../packages/aeproject-config/config/node-config.json');
+const nodeConfig = require('../../packages/forgae-config/config/node-config.json');
 
 let executeOptions = {
     cwd: process.cwd() + constants.deployTestsFolderPath
@@ -17,7 +17,7 @@ let executeOptions = {
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
-const Deployer = require('./../../packages/aeproject-lib/dist/aeproject-deployer').Deployer;
+const Deployer = require('./../../packages/forgae-lib/dist/forgae-deployer').Deployer;
 const config = require('./../constants.json');
 
 const INVALID_COMPILER_URL = 'http://compiler.somewhere.com';
@@ -25,7 +25,7 @@ const INVALID_COMPILER_URL = 'http://compiler.somewhere.com';
 const invalidParamDeploymentScriptPath = 'deployment/deploy2.js';
 const missingParamDeploymentScriptPath = 'deployment/deploy3.js';
 const additionalSCPath = 'contracts/ExampleContract2.aes';
-const mainAEprojectProjectDir = process.cwd();
+const mainForgaeProjectDir = process.cwd();
 
 function insertAdditionalFiles () {
     // copy needed files into test folder to run the specific tests
@@ -41,17 +41,17 @@ function insertAdditionalFiles () {
     fs.copyFileSync(additionalSC, `${ testFolder }/${ additionalSCPath }`);
 }
 
-async function linkLocalPackages() {
-    const aeprojectLibDir = `${ process.cwd() }/packages/aeproject-lib/`
-    const aeprojectUtilsDir = `${ process.cwd() }/packages/aeproject-utils/`
-    const aeprojectConfigDir = `${ process.cwd() }/packages/aeproject-config/`
+async function linkLocalPackages () {
+    const forgaeLibDir = `${ process.cwd() }/packages/forgae-lib/`
+    const forgaeUtilsDir = `${ process.cwd() }/packages/forgae-utils/`
+    const forgaeConfigDir = `${ process.cwd() }/packages/forgae-config/`
 
     process.chdir(executeOptions.cwd);
-    await exec('npm link aeproject-lib')
+    await exec('npm link forgae-lib')
 
 }
 
-describe('AEproject Deploy', () => {
+describe('ForgAE Deploy', () => {
     const secretKey = "bb9f0b01c8c9553cfbaf7ef81a50f977b1326801ebf7294d1c2cbccdedf27476e9bbf604e611b5460a3b3999e9771b6f60417d73ce7c5519e12f7e127a1225ca"
     before(async () => {
         fs.ensureDirSync(`.${ constants.deployTestsFolderPath }`)
@@ -115,7 +115,7 @@ describe('AEproject Deploy', () => {
             let result;
 
             await linkLocalPackages();
-            process.chdir(mainAEprojectProjectDir)
+            process.chdir(mainForgaeProjectDir)
 
             result = await execute(constants.cliCommands.DEPLOY, ["-n", "192.168.99.100:3001"], executeOptions);
 
@@ -198,7 +198,7 @@ describe('AEproject Deploy', () => {
             let testSecretKey = constants.privateKeyTestnetDeploy;
             let result = await execute(constants.cliCommands.DEPLOY, ["-n", "testnet", "-s", testSecretKey], executeOptions);
 
-            process.chdir(mainAEprojectProjectDir);
+            process.chdir(mainForgaeProjectDir);
 
             assert.include(result, expectedDeployResult)
         });

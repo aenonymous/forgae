@@ -1,11 +1,11 @@
 const chai = require('chai');
 const chaiFiles = require('chai-files');
 const assert = chai.assert;
-const execute = require('../../packages/aeproject-utils/utils/aeproject-utils.js').aeprojectExecute;
+const execute = require('../../packages/forgae-utils/utils/forgae-utils.js').forgaeExecute;
 const fs = require('fs-extra')
 const constants = require('../constants.json')
-const utilsPackageJson = require('../../packages/aeproject-utils/package.json')
-const aeprojectLibVersion = require('../../packages/aeproject-lib/package.json').version;
+const utilsPackageJson = require('../../packages/forgae-utils/package.json')
+const forgaeLibVersion = require('../../packages/forgae-lib/package.json').version;
 
 let executeOptions = {
     cwd: process.cwd() + constants.initTestsFolderPath
@@ -13,7 +13,7 @@ let executeOptions = {
 
 chai.use(chaiFiles);
 
-describe('AEproject Init', () => {
+describe('ForgAE Init', () => {
     before(async () => {
         fs.ensureDirSync(`.${ constants.initTestsFolderPath }`)
     });
@@ -59,11 +59,11 @@ describe('AEproject Init', () => {
         const projectPackageJson = require("./initTests/package.json");
 
         const sdkVersionInProject = projectPackageJson.dependencies['@aeternity/aepp-sdk'];
-        const aeprojectLibInProject = projectPackageJson.dependencies['aeproject-lib'];
+        const forgaeLibInProject = projectPackageJson.dependencies['forgae-lib'];
 
         assert.notEqual(editedDockerComposeYml, editedContent);
         assert.equal(sdkVersion, sdkVersionInProject, "sdk version is not updated properly");
-        assert.equal(aeprojectLibVersion, aeprojectLibInProject, "aeproject-lib is not updated properly");
+        assert.equal(forgaeLibVersion, forgaeLibInProject, "forgae-lib is not updated properly");
 
         assert.isTrue(fs.existsSync(`${ executeOptions.cwd }${ constants.testsFiles.packageJson }`), "package.json doesn't exist");
         assert.isTrue(fs.existsSync(`${ executeOptions.cwd }${ constants.testsFiles.packageLockJson }`), "package-lock.json doesn't exist");

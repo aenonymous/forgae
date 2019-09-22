@@ -1,4 +1,4 @@
-# aeproject-history
+# forgae-history
 
 ## History of your deploys
 
@@ -13,13 +13,13 @@ This package provides information of your previous deployments such as:
 ### Installation
 
 ```text
-npm install aeproject-logger
+npm install forgae-logger
 ```
 
 In order to see a list of what you've deployed you can run the following command:
 
 ```text
-aeproject history [limit]
+forgae history [limit]
 ```
 
 Parameters:
@@ -29,7 +29,7 @@ Parameters:
   Example: 
 
   ```text
-  aeproject history --limit 10
+  forgae history --limit 10
   ```
 
 Using this command will print you historical list of execution reports

@@ -1,2 +1,2 @@
-# AEproject Config
+# ForgAE Config
 
