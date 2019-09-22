@@ -19,6 +19,6 @@ Forgae consists of 5 separated packages. There are two main packages.
 npm i -g forgae
 ```
 
-### Documentation
+## Documentation
 
-[Documentation](https://forgae.gitbook.io/)
+[Documentation](docs/SUMMARY.md)

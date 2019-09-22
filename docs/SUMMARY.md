@@ -1,7 +1,3 @@
-# Table of contents
-
-* [ForgAE](README.md)
-
 ## Developer Documentation
 
 * [Quick Start](developer-documentation/getting-started.md)
